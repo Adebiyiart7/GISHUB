@@ -1,15 +1,20 @@
-import React from 'react'
-import { GiWorld } from 'react-icons/gi'
+import React, { useContext } from 'react'
 
-import LeftMenuHeader from './LeftMenuHeader'
-import Grid from './Grid'
+import LeftMenuHeader from '../LeftMenuHeader'
+import { AppContext } from '../../providers/AppContext'
+import leftMenuContentTitles from '../../config/leftMenuContentTitles'
 
 const World = ({ title }) => {
+  const { dispatch } = useContext(AppContext)
+  const handleGoBack = () => {
+    dispatch({ type: leftMenuContentTitles.FIND_DATA._id })
+  }
+
   return (
     <div>
-      <LeftMenuHeader title={title} />
+      <LeftMenuHeader title={title} onClickBack={handleGoBack} />
       <div className='grid grid-cols-3'>
-        <Grid title={'World'} Icon={<GiWorld />} />
+        <div>Text</div>
       </div>
     </div>
   )

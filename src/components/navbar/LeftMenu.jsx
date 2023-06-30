@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { AiOutlineCloudUpload, AiOutlineCloudDownload } from 'react-icons/ai'
 
 import leftMenuContentTitles from '../../config/leftMenuContentTitles'
 import { AppContext } from '../../providers/AppContext'
+import Tab from '../left-menu/Tab'
 
 const LeftMenu = () => {
   const { state, dispatch } = useContext(AppContext)
@@ -15,35 +16,12 @@ const LeftMenu = () => {
     dispatch({ type: leftMenuContentTitles.UPLOAD_DATA._id })
   }
 
-  const Menu = React.memo(({ title, onClick, Icon }) => {
-    return (
-      <div
-        onClick={onClick}
-        className={`relative block px-3 py-2 w-[150px] text-sm cursor-pointer border-b border-gray-200 ${
-          state.leftMenuContent.title === title && 'bg-lightBackground border-b-lightBackground'
-        }`}
-      >
-        <div className='flex items-center justify-center gap-3'>
-          <span className={`mb-1`}>{Icon}</span>
-          <span
-            className={`font-medium capitalize ${
-              state.leftMenuContent.title === title ? 'text-primary' : 'text-gray-600'
-            }`}
-          >
-            {' '}
-            {title}{' '}
-          </span>
-        </div>
-      </div>
-    )
-  })
-
   return (
-    <div className={`flex flex-col justify-between bg-lightBackground h-full relative  w-[300px]`}>
+    <div className={`flex flex-col justify-between bg-lightBackground h-full relative w-[300px]`}>
       <div>
         <ul className={`flex items-center bg-white`}>
           <div className='border-r border-gray-200'>
-            <Menu
+            <Tab
               title={leftMenuContentTitles.FIND_DATA.title}
               onClick={handleSwitchFindData}
               Icon={
@@ -57,7 +35,7 @@ const LeftMenu = () => {
               }
             />
           </div>
-          <Menu
+          <Tab
             title={leftMenuContentTitles.UPLOAD_DATA.title}
             onClick={handleSwitchUploadData}
             Icon={
@@ -86,31 +64,3 @@ const LeftMenu = () => {
 }
 
 export default LeftMenu
-
-/**
- * import React, { useContext } from 'react';
-import { AppContext } from './AppContext';
-
-const MyComponent = () => {
-  const { state, dispatch } = useContext(AppContext);
-
-  const handleIncrement = () => {
-    dispatch({ type: 'INCREMENT' });
-  };
-
-  const handleDecrement = () => {
-    dispatch({ type: 'DECREMENT' });
-  };
-
-  return (
-    <div>
-      <h2>Count: {state.count}</h2>
-      <button onClick={handleIncrement}>Increment</button>
-      <button onClick={handleDecrement}>Decrement</button>
-    </div>
-  );
-};
-
-export default MyComponent;
-
- */
