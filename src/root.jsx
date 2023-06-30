@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Outlet } from 'react-router-dom'
-import AppProvider from './providers/AppProvider'
+import { AppContextProvider } from './providers/AppContext'
 import Navbar from './components/Navbar'
 import LeftMenu from './components/navbar/LeftMenu'
 
@@ -10,7 +10,7 @@ export default function Root() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AppProvider>
+      <AppContextProvider>
         <Navbar />
         <div className='text-primaryText'>
           <Toaster /> {/* last */}
@@ -23,7 +23,7 @@ export default function Root() {
             </div>
           </div>
         </div>
-      </AppProvider>
+      </AppContextProvider>
     </QueryClientProvider>
   )
 }
