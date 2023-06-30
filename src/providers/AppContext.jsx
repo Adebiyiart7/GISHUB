@@ -6,7 +6,7 @@ import UploadData from '../components/UploadData'
 // Define your initial state
 const initialState = {
   leftMenuContent: {
-    title: leftMenuContentTitles.FIND_DATA,
+    title: leftMenuContentTitles.FIND_DATA.title,
     content: <FindData title={leftMenuContentTitles.FIND_DATA.title} />,
   },
 }
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         leftMenuContent: {
-          title: leftMenuContentTitles.FIND_DATA,
+          title: leftMenuContentTitles.FIND_DATA.title,
           content: <FindData title={leftMenuContentTitles.FIND_DATA.title} />,
         },
       }
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         leftMenuContent: {
-          title: leftMenuContentTitles.UPLOAD_DATA,
+          title: leftMenuContentTitles.UPLOAD_DATA.title,
           content: <UploadData title={leftMenuContentTitles.UPLOAD_DATA.title} />,
         },
       }

@@ -18,7 +18,7 @@ export default function Root() {
             <div className='border-r border-gray-200 h-[100vh]'>
               <LeftMenu />
             </div>
-            <div className='py-[10px]'>
+            <div className={`w-[calc(100%-600px]`}>
               <Outlet />
             </div>
           </div>

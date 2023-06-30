@@ -1,13 +1,9 @@
 import React from 'react'
 import Container from '../components/Container'
-import Main from '../map/Main'
+import MainMap from '../map/Main'
 
 const Home = () => {
-  return (
-    <Container>
-      <Main />
-    </Container>
-  )
+  return <MainMap />
 }
 
 export default Home

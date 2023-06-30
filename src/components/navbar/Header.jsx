@@ -11,7 +11,7 @@ const Header = () => {
     <div className='bg-primary py-2'>
       <Container className={'flex justify-between items-center'}>
         <a href={routes.HOME}>
-          <img src={logo} className='w-[110px]' />
+          <img src={logo} className='h-[50px]' />
         </a>
         <ul className='flex border-b border-gray-400'>
           <Menu title={'Home'} route={routes.HOME} Icon={<IoHome className='text-lg text-gray-200' />} />
@@ -20,7 +20,7 @@ const Header = () => {
         </ul>
 
         <ul className='flex border-b border-gray-400'>
-          <Menu title={'Adebiyi'} route={routes.PROFILE} Icon={<IoPerson className='text-3xl text-gray-200' />} />
+          <Menu title={'Adebiyi'} route={routes.PROFILE} Icon={<IoPerson className='text-xl text-gray-200' />} />
         </ul>
       </Container>
     </div>

@@ -1,33 +1,31 @@
-import { Map, MapView } from '@arcgis/core'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
+import MapView from '@arcgis/core/views/MapView'
+import WebMap from '@arcgis/core/WebMap'
 
-const Main = () => {
-  const mapRef = useRef(null)
+import basemaps from '../config/basemapOptions'
+
+function Main() {
+  const mapDiv = useRef(null)
 
   useEffect(() => {
-    if (mapRef.current) {
-      initializeMap()
+    if (mapDiv.current) {
+      /**
+       * Initialize application
+       */
+      const webmap = new WebMap({
+        basemap: basemaps.OPENSTREETMAP,
+      })
+
+      const view = new MapView({
+        container: mapDiv.current,
+        map: webmap,
+        center: [9.082, 8.6753], // Set the initial center coordinates
+        zoom: 6, // Set the initial zoom level
+      })
     }
   }, [])
 
-  const initializeMap = () => {
-    // Import the required modules from the ArcGIS API for JavaScript
-
-    // Create a new map instance
-    const map = new Map({
-      basemap: 'streets-vector', // Set the basemap
-    })
-
-    // Create a new map view instance and attach it to the map container
-    const view = new MapView({
-      container: mapRef.current,
-      map: map,
-      center: [-122.4194, 37.7749], // Set the initial center coordinates
-      zoom: 12, // Set the initial zoom level
-    })
-  }
-
-  return <div ref={mapRef} style={{ height: '500px' }} />
+  return <div className='w-[calc(100vw-300px)] h-[calc(100vh-66px)] p-3 pb-0' ref={mapDiv} />
 }
 
 export default Main
