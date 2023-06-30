@@ -1,34 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineCloudUpload, AiOutlineCloudDownload } from 'react-icons/ai'
 
 import sizes from '../../config/sizes'
 import FindData from '../FindData'
 import UploadData from '../UploadData'
 import leftMenuContentTitles from '../../config/leftMenuContentTitles'
-
-const leftMenuContents = [
-  { title: leftMenuContentTitles.FIND_DATA, content: <FindData title={leftMenuContentTitles.FIND_DATA.title} /> },
-  { title: leftMenuContentTitles.UPLOAD_DATA, content: <UploadData title={leftMenuContentTitles.UPLOAD_DATA.title} /> },
-]
+import { AppContext } from '../../providers/AppContext'
 
 const LeftMenu = () => {
   const [active, setActive] = useState(leftMenuContentTitles.FIND_DATA.title)
-  const [leftMenuContent, setLeftMenuContent] = useState(leftMenuContents[0])
-  const handleOnClick = (title) => {
-    setActive(title)
-    if (title === leftMenuContentTitles.FIND_DATA.title) {
-      setLeftMenuContent(leftMenuContents[0])
-    } else {
-      setLeftMenuContent(leftMenuContents[1])
-    }
+  const { state, dispatch } = useContext(AppContext)
+
+  const handleSwitchFindData = () => {
+    dispatch({ type: leftMenuContentTitles.FIND_DATA._id })
   }
 
-  useEffect(() => {}, [])
+  const handleSwitchUploadData = () => {
+    dispatch({ type: leftMenuContentTitles.UPLOAD_DATA._id })
+  }
 
-  const Menu = React.memo(({ title, Icon }) => {
+  const Menu = React.memo(({ title, onClick, Icon }) => {
     return (
       <div
-        onClick={() => handleOnClick(title)}
+        onClick={onClick}
         class={`relative block px-3 py-2 w-[${
           sizes.leftMenuWidth / 2
         }px] text-sm cursor-pointer border-b border-gray-200 ${
@@ -50,6 +44,7 @@ const LeftMenu = () => {
           <div className='border-r border-gray-200'>
             <Menu
               title={leftMenuContentTitles.FIND_DATA.title}
+              onClick={handleSwitchFindData}
               Icon={
                 <AiOutlineCloudDownload
                   className={`${
@@ -61,6 +56,7 @@ const LeftMenu = () => {
           </div>
           <Menu
             title={leftMenuContentTitles.UPLOAD_DATA.title}
+            onClick={handleSwitchUploadData}
             Icon={
               <AiOutlineCloudUpload
                 className={`${
@@ -70,7 +66,7 @@ const LeftMenu = () => {
             }
           />
         </ul>
-        <div className='p-2'>{leftMenuContent.content}</div>
+        <div className='p-2'>{state.leftMenuContent.content}</div>
       </div>
 
       <div className={`flex justify-center items-center fixed bottom-0 p-2 border-t w-[${sizes.leftMenuWidth}px]`}>
@@ -85,3 +81,31 @@ const LeftMenu = () => {
 }
 
 export default LeftMenu
+
+/**
+ * import React, { useContext } from 'react';
+import { AppContext } from './AppContext';
+
+const MyComponent = () => {
+  const { state, dispatch } = useContext(AppContext);
+
+  const handleIncrement = () => {
+    dispatch({ type: 'INCREMENT' });
+  };
+
+  const handleDecrement = () => {
+    dispatch({ type: 'DECREMENT' });
+  };
+
+  return (
+    <div>
+      <h2>Count: {state.count}</h2>
+      <button onClick={handleIncrement}>Increment</button>
+      <button onClick={handleDecrement}>Decrement</button>
+    </div>
+  );
+};
+
+export default MyComponent;
+
+ */
