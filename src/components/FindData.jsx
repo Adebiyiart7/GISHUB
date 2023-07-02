@@ -8,19 +8,19 @@ import { AppContext } from '../providers/AppContext'
 import Grid from '../components/left-menu/Grid'
 
 const FindData = ({ title }) => {
-  const { dispatch } = useContext(AppContext)
+  const { leftMenuContentDispatch } = useContext(AppContext)
 
   const handleMinna = () => {
-    dispatch({ type: leftMenuContentTitles.MINNA._id })
+    leftMenuContentDispatch({ type: leftMenuContentTitles.MINNA._id })
   }
   const handleNigeria = () => {
-    dispatch({ type: leftMenuContentTitles.NIGERIA._id })
+    leftMenuContentDispatch({ type: leftMenuContentTitles.NIGERIA._id })
   }
   const handleAfrica = () => {
-    dispatch({ type: leftMenuContentTitles.AFRICA._id })
+    leftMenuContentDispatch({ type: leftMenuContentTitles.AFRICA._id })
   }
   const handleWorld = () => {
-    dispatch({ type: leftMenuContentTitles.WORLD._id })
+    leftMenuContentDispatch({ type: leftMenuContentTitles.WORLD._id })
   }
 
   return (

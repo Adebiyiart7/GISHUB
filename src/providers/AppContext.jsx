@@ -6,24 +6,27 @@ import Minna from '../components/dataCategories/Minna'
 import Nigeria from '../components/dataCategories/Nigeria'
 import Africa from '../components/dataCategories/Africa'
 import World from '../components/dataCategories/World'
+import basemaps from '../config/basemapOptions'
 
+// LEFT MENU CONTENT REDUCER
 // Define your initial state
-const initialState = {
+const leftMenuContentInitialState = {
   leftMenuContent: {
     title: leftMenuContentTitles.FIND_DATA.title,
     content: <FindData title={leftMenuContentTitles.FIND_DATA.title} />,
   },
 }
 
-// Define your reducer function
-const reducer = (state, action) => {
+// define reduer
+const leftMenuContentReducer = (state, action) => {
   switch (action.type) {
     // Find Data Content
     case leftMenuContentTitles.FIND_DATA._id:
       return {
         ...state,
-        leftMenuContent: initialState.leftMenuContent,
+        leftMenuContent: leftMenuContentInitialState.leftMenuContent,
       }
+
     // Upload Data Content
     case leftMenuContentTitles.UPLOAD_DATA._id:
       return {
@@ -79,12 +82,104 @@ const reducer = (state, action) => {
   }
 }
 
+// BASEMAP REDUCER
+// Define your initial state
+const basemapInitialState = {
+  basemap: basemaps.OCEANS._id,
+}
+
+const basemapReducer = (state, action) => {
+  switch (action.type) {
+    // STREETS
+    case basemapInitialState.basemap:
+      return {
+        ...state,
+        basemap: basemapInitialState.basemap,
+      }
+
+    // TOPOGRAPHIC
+    case basemaps.TOPOGRAPHIC._id:
+      return {
+        ...state,
+        basemap: basemaps.TOPOGRAPHIC._id,
+      }
+
+    // IMAGERY
+    case basemaps.IMAGERY._id:
+      return {
+        ...state,
+        basemap: basemaps.IMAGERY._id,
+      }
+
+    // NATIONAL_GEOGRAPHIC
+    case basemaps.NATIONAL_GEOGRAPHIC._id:
+      return {
+        ...state,
+        basemap: basemaps.NATIONAL_GEOGRAPHIC._id,
+      }
+
+    // OCEANS
+    case basemaps.OCEANS._id:
+      return {
+        ...state,
+        basemap: basemaps.OCEANS._id,
+      }
+
+    // LIGHT_GRAY_CANVAS
+    case basemaps.LIGHT_GRAY_CANVAS._id:
+      return {
+        ...state,
+        basemap: basemaps.LIGHT_GRAY_CANVAS._id,
+      }
+
+    // DARK_GRAY_CANVAS
+    case basemaps.DARK_GRAY_CANVAS._id:
+      return {
+        ...state,
+        basemap: basemaps.DARK_GRAY_CANVAS._id,
+      }
+
+    // TERRAIN_WITH_LABELS
+    case basemaps.TERRAIN_WITH_LABELS._id:
+      return {
+        ...state,
+        basemap: basemaps.TERRAIN_WITH_LABELS._id,
+      }
+
+    // OPENSTREETMAP
+    case basemaps.OPENSTREETMAP._id:
+      return {
+        ...state,
+        basemap: basemaps.OPENSTREETMAP._id,
+      }
+
+    // IMAGERY_WITH_LABELS
+    case basemaps.IMAGERY_WITH_LABELS._id:
+      return {
+        ...state,
+        basemap: basemaps.IMAGERY_WITH_LABELS._id,
+      }
+
+    default:
+      return state
+  }
+}
+
 // Create the context
 export const AppContext = createContext()
 
 // Create the context provider
 export const AppContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [leftMenuContentState, leftMenuContentDispatch] = useReducer(
+    leftMenuContentReducer,
+    leftMenuContentInitialState,
+  )
 
-  return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>
+  const [basemapState, basemapDispatch] = useReducer(basemapReducer, basemapInitialState)
+
+  return (
+    <AppContext.Provider value={{ leftMenuContentState, leftMenuContentDispatch, basemapState, basemapDispatch }}>
+      {children}
+    </AppContext.Provider>
+  )
 }

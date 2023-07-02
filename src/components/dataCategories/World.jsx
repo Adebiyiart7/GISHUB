@@ -5,9 +5,9 @@ import { AppContext } from '../../providers/AppContext'
 import leftMenuContentTitles from '../../config/leftMenuContentTitles'
 
 const World = ({ title }) => {
-  const { dispatch } = useContext(AppContext)
+  const { leftMenuContentDispatch } = useContext(AppContext)
   const handleGoBack = () => {
-    dispatch({ type: leftMenuContentTitles.FIND_DATA._id })
+    leftMenuContentDispatch({ type: leftMenuContentTitles.FIND_DATA._id })
   }
 
   return (
