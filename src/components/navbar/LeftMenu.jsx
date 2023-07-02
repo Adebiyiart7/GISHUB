@@ -67,9 +67,7 @@ const LeftMenu = () => {
             className={`overflow-y-scroll absolute bg-lightBackground h-[250px] bottom-[-300px] ${
               showBasemap && 'bottom-[0px]'
             } transition duration-700 ease-in-out z-30`}
-          >
-            <BasemapOptions basemaps={basemaps} handleSwitchBasemap={handleSwitchBasemap} />
-          </div>
+          ></div>
         </div>
       </div>
 
