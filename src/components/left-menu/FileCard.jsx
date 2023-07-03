@@ -5,7 +5,7 @@ import { VscMapFilled } from 'react-icons/vsc'
 
 const FileCard = ({ title, description, size }) => {
   return (
-    <div className='flex flex-col gap-2 relative p-2 border rounded bg-white w-[268px] mx-2 hover:border-primary'>
+    <div className='flex flex-col gap-2 relative p-2 border rounded bg-white w-[268px] mx-2 hover:border-green-500'>
       <BsInfoCircle className='absolute top-2 cursor-pointer right-2 text-green-800' />
       <div className='flex gap-2 items-center'>
         <BsFileEarmarkZip size={35} className='text-gray-600' />
@@ -16,10 +16,10 @@ const FileCard = ({ title, description, size }) => {
       </div>
       <div className='flex justify-between items-center'>
         <div className='flex items-center gap-2'>
-          <span className='flex items-center gap-1 text-xs border rounded font-semibold text-gray-600 px-2 py-1 cursor-pointer hover:border-primary hover:text-primary'>
+          <span className='flex items-center gap-1 text-xs border rounded font-medium text-gray-600 px-2 py-1 cursor-pointer hover:border-green-500 hover:text-green-500'>
             <VscMapFilled size={20} /> Preview
           </span>
-          <span className='flex items-center gap-1 text-xs border rounded font-semibold text-primary px-2 py-1 cursor-pointer bg-primary border-primary text-white'>
+          <span className='flex items-center gap-1 text-xs border rounded font-medium px-2 py-1 cursor-pointer bg-green-500 border-green-500 text-white'>
             <MdOutlineFileDownload size={20} /> Download
           </span>
         </div>

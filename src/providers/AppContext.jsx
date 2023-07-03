@@ -85,7 +85,7 @@ const leftMenuContentReducer = (state, action) => {
 // BASEMAP REDUCER
 // Define your initial state
 const basemapInitialState = {
-  basemap: basemaps.OCEANS._id,
+  basemap: basemaps.STREETS._id,
 }
 
 const basemapReducer = (state, action) => {

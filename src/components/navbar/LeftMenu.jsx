@@ -6,6 +6,7 @@ import { AppContext } from '../../providers/AppContext'
 import Tab from '../left-menu/Tab'
 import basemaps from '../../config/basemapOptions'
 import BasemapOptions from '../BasemapOptions'
+import colors from '../../config/colors'
 
 const LeftMenu = () => {
   const [showBasemap, setShowBasemap] = useState(false)
@@ -74,11 +75,11 @@ const LeftMenu = () => {
       </div>
 
       <div
-        className={`flex flex-col justify-center items-center fixed bottom-0 border-t w-[300px] bg-lightBackground z-30`}
+        className={`flex flex-col justify-center items-center fixed bottom-0 border-t w-[301px] bg-lightBackground z-30`}
       >
         <div
           onClick={handleBasemaps}
-          className='cursor-pointer p-2 font-semibold text-sm hover:border hover:bg-primary border-primary hover:text-white w-[100%] text-center'
+          className={`cursor-pointer p-2 font-semibold text-sm ${colors.primaryGradient} text-white w-[100%] text-center`}
         >
           Basemaps
         </div>
