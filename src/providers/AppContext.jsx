@@ -8,8 +8,40 @@ import Africa from '../components/dataCategories/Africa'
 import World from '../components/dataCategories/World'
 import basemaps from '../config/basemapOptions'
 
-// LEFT MENU CONTENT REDUCER
-// Define your initial state
+/**
+ *
+ * HIDE LEFT MENU REDUCER
+ * Define your initial state
+ *
+ */
+const hideLeftMenuInitialState = {
+  hide: false,
+}
+
+const hideLeftMenuReducer = (state, action) => {
+  switch (action.type) {
+    case 'SHOW':
+      return {
+        ...state,
+        hide: hideLeftMenuInitialState.hide,
+      }
+
+    case 'HIDE':
+      return {
+        ...state,
+        hide: true,
+      }
+    default:
+      return state
+  }
+}
+
+/**
+ *
+ * LEFT MENU CONTENT REDUCER
+ * Define your initial state
+ *
+ */
 const leftMenuContentInitialState = {
   leftMenuContent: {
     title: leftMenuContentTitles.FIND_DATA.title,
@@ -17,7 +49,6 @@ const leftMenuContentInitialState = {
   },
 }
 
-// define reduer
 const leftMenuContentReducer = (state, action) => {
   switch (action.type) {
     // Find Data Content
@@ -82,8 +113,12 @@ const leftMenuContentReducer = (state, action) => {
   }
 }
 
-// BASEMAP REDUCER
-// Define your initial state
+/**
+ *
+ * BASEMAP REDUCER
+ * Define your initial state
+ *
+ */
 const basemapInitialState = {
   basemap: basemaps.STREETS._id,
 }
@@ -176,9 +211,19 @@ export const AppContextProvider = ({ children }) => {
   )
 
   const [basemapState, basemapDispatch] = useReducer(basemapReducer, basemapInitialState)
+  const [hideLeftMenuState, hideLeftMenuDispatch] = useReducer(hideLeftMenuReducer, hideLeftMenuInitialState)
 
   return (
-    <AppContext.Provider value={{ leftMenuContentState, leftMenuContentDispatch, basemapState, basemapDispatch }}>
+    <AppContext.Provider
+      value={{
+        leftMenuContentState,
+        leftMenuContentDispatch,
+        basemapState,
+        basemapDispatch,
+        hideLeftMenuState,
+        hideLeftMenuDispatch,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

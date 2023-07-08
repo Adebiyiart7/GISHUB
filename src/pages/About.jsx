@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Container from '../components/Container'
 import developer from '/assets/images/developer.jpeg'
 import supervisor from '/assets/images/supervisor.png'
+import { AppContext } from '../providers/AppContext'
 
 const About = () => {
+  const { hideLeftMenuDispatch } = useContext(AppContext)
+
+  useEffect(() => {
+    hideLeftMenuDispatch({ type: 'HIDE' })
+
+    return () => hideLeftMenuDispatch({ type: 'SHOW' })
+  }, [])
+
   return (
     <Container className={'h-full pt-6 overflow-y-scroll'}>
       <div className='text-center mb-6'>
@@ -15,8 +24,8 @@ const About = () => {
         </p>
       </div>
       <div className='text-center text-3xl font-bold text-gray-800 mb-4'>Meet the Developers</div>
-      <div className='flex justify-between gap-4'>
-        <div className='flex-1 text-center mb-10'>
+      <div className='flex justify-center gap-4 items-center'>
+        <div className='flex-1 text-center mb-10 max-w-[400px]'>
           <img src={developer} alt='Developer' className='rounded-full max-w-[200px] m-auto' />
           <div className='my-2'>
             <div className='font-medium text-xl'>Adeeyo Joseph Adebiyi</div>
@@ -27,7 +36,7 @@ const About = () => {
             technology to solve complex problems and contribute to the field of GIS.
           </div>
         </div>
-        <div className='flex-1 text-center mb-10'>
+        <div className='flex-1 text-center mb-10 max-w-[400px]'>
           <img src={supervisor} alt='Developer' className='rounded-full max-w-[200px] m-auto' />
           <div className='my-2'>
             <div className='font-medium text-xl'>Dr. Mary Oluwatobi Odekunle</div>

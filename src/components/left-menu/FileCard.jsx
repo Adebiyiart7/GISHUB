@@ -5,7 +5,7 @@ import { VscMapFilled } from 'react-icons/vsc'
 
 const FileCard = ({ title, description, size }) => {
   return (
-    <div className='flex flex-col gap-2 relative p-2 border rounded bg-white w-[268px] mx-2 hover:border-green-500'>
+    <div className='flex flex-col gap-2 relative p-2 border rounded bg-white w-[268px] mx-2 hover:border-green-500 drop-shadow-sm'>
       <BsInfoCircle className='absolute top-2 cursor-pointer right-2 text-green-800' />
       <div className='flex gap-2 items-center'>
         <BsFileEarmarkZip size={35} className='text-gray-600' />

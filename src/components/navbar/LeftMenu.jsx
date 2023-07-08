@@ -7,10 +7,11 @@ import Tab from '../left-menu/Tab'
 import basemaps from '../../config/basemapOptions'
 import BasemapOptions from '../BasemapOptions'
 import colors from '../../config/colors'
+import { Link } from 'react-router-dom'
 
 const LeftMenu = () => {
   const [showBasemap, setShowBasemap] = useState(false)
-  const { leftMenuContentState, leftMenuContentDispatch, basemapDispatch } = useContext(AppContext)
+  const { leftMenuContentState, leftMenuContentDispatch, basemapDispatch, hideLeftMenuState } = useContext(AppContext)
 
   const handleSwitchFindData = () => {
     leftMenuContentDispatch({ type: leftMenuContentTitles.FIND_DATA._id })
@@ -25,6 +26,8 @@ const LeftMenu = () => {
   }
 
   const handleBasemaps = () => setShowBasemap(!showBasemap)
+  console.log(hideLeftMenuState)
+  if (hideLeftMenuState.hide) return
 
   return (
     <div className={`flex flex-col justify-between bg-lightBackground h-full relative w-[300px]`}>
@@ -86,7 +89,13 @@ const LeftMenu = () => {
         <div className='text-center border-t w-[300px] p-2'>
           <em className='text-xs leading-[1]'>Developed By: </em>
           <span className='font-semibold text-sm leading-[1]'> Adeeyo Joseph Adebiyi</span>
-          <div className='text-xs'>Federal University of Technology, Minna.</div>
+          <div className='text-[11px] leading-[1]'>Federal University of Technology, Minna.</div>
+          <div className='flex gap-4 justify-center text-primary text-[11px] underline pt-1'>
+            <Link to={'/about'}>About</Link>
+            <Link to={'/privacy-policy'}>Privacy Policy</Link>
+            <Link to={'/terms-of-use'}>Terms of Use</Link>
+            {/* <Link to={'/about'}>About</Link> */}
+          </div>
         </div>
       </div>
     </div>
