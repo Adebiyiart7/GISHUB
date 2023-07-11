@@ -17,7 +17,7 @@ const Profile = () => {
   }, [])
 
   return (
-    <Container className={'flex flex-col items-center py-10 max-w-[500px] text-center'}>
+    <Container className={'flex flex-col items-center py-10 max-w-[600px] text-center'}>
       <img src={developer} className='rounded-full w-[200px]' />
       <div>
         <div className='font-bold text-xl mt-3 uppercase'>Adeeyo Joseph Adebiyi</div>
@@ -26,7 +26,7 @@ const Profile = () => {
           With expertise in Software Development, Remote Sensing, and GIS analysis, I am dedicated to leveraging
           technology to solve complex problems and contribute to the field of GIS.
         </p>
-        <div>
+        {/* <div>
           <Link className='flex justify-center items-center text-primary font-medium' to={'/'}>
             <FaTwitter />
             @_theCodingChef
@@ -37,7 +37,7 @@ const Profile = () => {
             <IoLogoLinkedin />
             @_theCodingChef
           </Link>
-        </div>
+        </div> */}
         <Link className='text-primary font-medium' to={'/'}>
           https://_thecodingchef.com
         </Link>
