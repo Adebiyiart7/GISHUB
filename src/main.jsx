@@ -11,6 +11,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 
 /**
- * // TODO: Add provistion to edit agent account details
  * // TODO: Handle Bad Network
  */

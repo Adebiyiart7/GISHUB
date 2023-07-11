@@ -31,6 +31,16 @@ const userSchema = new mongoose.Schema(
       max: 255,
       trim: true,
     },
+    bio: {
+      type: String,
+      min: 3,
+      max: 1000,
+    },
+    website: {
+      type: String,
+      max: 255,
+      trim: true,
+    },
     institution: {
       type: String,
       max: 255,
@@ -86,7 +96,6 @@ userSchema.methods.generateAuthToken = function () {
   return jwt.sign(
     {
       _id: this._id,
-      isAgent: this.isAgent,
       isAdmin: this.isAdmin,
       isActive: this.isActive,
       isBlocked: this.isBlocked,

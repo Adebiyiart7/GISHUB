@@ -17,7 +17,6 @@ module.exports = async (req, res, next) => {
     const user = await User.findById(decoded._id).select([
       "_id",
       "email",
-      "isAgent",
       "isActive",
       "fullname",
     ]);
