@@ -1,10 +1,9 @@
 // const Joi = require("joi");
 
 // LOCAL IMPORT
-const User = require("../../models/user");
-const { profileSchema } = require("../../config/validation");
-const { mailer } = require("../../config/mailer");
-const { apiResponse } = require("../../utils");
+const User = require('../../models/user')
+const { profileSchema } = require('../../config/validation')
+const { apiResponse } = require('../../utils')
 
 /**
  * @route         PUT   /api/v1/users/update
@@ -13,40 +12,40 @@ const { apiResponse } = require("../../utils");
  */
 const update = async (req, res) => {
   // try {
-  const _id = req.user;
-  let user = await User.findById(_id); // get current user
+  const _id = req.user
+  let user = await User.findById(_id) // get current user
 
   if (!user) {
-    res.status(404);
-    throw new Error("User not found!");
+    res.status(404)
+    throw new Error('User not found!')
   }
   // validation
-  const { error } = profileSchema.validate(req.body);
+  const { error } = profileSchema.validate(req.body)
 
   if (error) {
-    res.status(400);
-    throw new Error(error.message);
+    res.status(400)
+    throw new Error(error.message)
   }
 
   // check if username already exist
   const checkUsername = await User.findOne({
     username: req.body.username,
-  });
+  })
 
   if (user.username !== req.body.username) {
     if (checkUsername) {
-      res.status(400);
-      throw new Error("Username already exist.");
+      res.status(400)
+      throw new Error('Username already exist.')
     }
   }
 
   // check if email already exist
-  const checkEmail = await User.findOne({ email: req.body.email });
+  const checkEmail = await User.findOne({ email: req.body.email })
   // console.log(checkEmail);
   if (user.email !== req.body.email) {
     if (checkEmail) {
-      res.status(400);
-      throw new Error("Email already exist.");
+      res.status(400)
+      throw new Error('Email already exist.')
     }
   }
 
@@ -70,36 +69,28 @@ const update = async (req, res) => {
   user = await User.findByIdAndUpdate(_id, req.body, {
     new: true,
   }).select([
-    "_id",
-    "fullname",
-    "email",
-    "username",
-    "institution",
-    "department",
-    "level",
-    "gender",
-    "stateOfOrigin",
-    "homeAddress",
-    "avatar",
-    "phoneNumber",
-    "country",
-    "dob",
-  ]);
+    '_id',
+    'fullname',
+    'email',
+    'username',
+    'institution',
+    'department',
+    'level',
+    'gender',
+    'stateOfOrigin',
+    'homeAddress',
+    'avatar',
+    'phoneNumber',
+    'country',
+    'dob',
+  ])
 
-  return res
-    .status(200)
-    .json(
-      apiResponse(
-        res.statusCode,
-        "Your profile has been updated successfully.",
-        user
-      )
-    );
+  return res.status(200).json(apiResponse(res.statusCode, 'Your profile has been updated successfully.', user))
   // } catch (error) {
   //   console.log(error);
   //   res.status(400);
   //   throw new Error("Error Updating profile");
   // }
-};
+}
 
-module.exports = update;
+module.exports = update
