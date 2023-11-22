@@ -30,7 +30,7 @@ function Main() {
         const params = {
           name,
           targetSR: view.spatialReference,
-          maxRecordCount: 1000,
+          maxRecordCount: 10000,
           enforceInputFileSizeLimit: true,
           enforceOutputJsonSizeLimit: true,
         }
@@ -89,7 +89,7 @@ function Main() {
       }
 
       const errorHandler = (error) => {
-        uploadStatusRef.current.innerHTML = "<p style='color:red;max-width: 500px;'>" + error.message + '</p>'
+        uploadStatusRef.current.innerHTML = "<p style='color:red; max-width: 500px;'>" + error.message + '</p>'
       }
 
       //  * Initialize application
@@ -102,6 +102,7 @@ function Main() {
         map: webMap,
         center: [9.082, 8.6753], // Set the initial center coordinates
         zoom: 6, // Set the initial zoom level
+
         popup: {
           defaultPopupTemplateEnabled: true,
         },

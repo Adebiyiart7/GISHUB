@@ -14,7 +14,7 @@ const Profile = () => {
     hideLeftMenuDispatch({ type: 'HIDE' })
 
     return () => hideLeftMenuDispatch({ type: 'SHOW' })
-  }, [])
+  }, [hideLeftMenuDispatch])
 
   return (
     <Container className={'flex flex-col items-center py-10 max-w-[600px] text-center'}>
